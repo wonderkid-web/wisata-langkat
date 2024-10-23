@@ -12,12 +12,12 @@ export default function MosaicGallery() {
   const [selectedImage, setSelectedImage] = useState<DestinationType | null>(null)
 
   return (
-    <div className="max-h-[95vh] overflow-hidden container mx-auto px-4 py-8">
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-[93vh] overflow-scroll">
+    <div className="h-screen sm:max-h-[95vh] overflow-hidden container mx-auto px-4 py-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-full sm:max-h-[93vh] overflow-scroll">
         {destination.map((item) => (
           <motion.div
             key={item.placeKode}
-            className="relative overflow-hidden aspect-square cursor-pointer"
+            className="relative overflow-hidden sm:aspect-square cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setSelectedImage(item)}

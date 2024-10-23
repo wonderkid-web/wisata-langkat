@@ -3,6 +3,7 @@ import * as motion from "framer-motion/client";
 import { PlaceKodeType } from "@/src/types";
 import { destination } from "@/src/stataic";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 export default function LightboxGallery({
   params: { placeKode },
@@ -18,13 +19,13 @@ export default function LightboxGallery({
       transition={{ delay: 0.8, duration: 0.5 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="mt-4 grid grid-cols-9 grid-rows-5 gap-4 relative min-h-[93vh] max-h-[93vh] overflow-hidden pt-12"
+      className="mt-4 flex flex-col sm:grid grid-cols-9 grid-rows-5 gap-4 relative min-h-[93vh] h-full sm:max-h-[93vh] pt-12"
     >
-      <div className="relative col-start-2 col-end-4 row-start-1 row-end-4 cursor-pointer rounded-md overflow-hidden text-slate-800!">
+      <div className="relative w-5/6 h-56 mx-auto sm:col-start-2 sm:col-end-4 sm:row-start-1 sm:row-end-4 cursor-pointer rounded-md overflow-hidden text-slate-800!">
         <Image fill alt={alt} src={src} className="object-cover" />
       </div>
 
-      <div className="relative col-start-4 col-end-9 row-start-1 -row-end-1 rounded-md overflow-hidden  shadow-lg p-6 pt-0">
+      <div className="relative col-start-4 col-end-9 row-start-1 -row-end-1 rounded-md overflow-auto sm:overflow-hidden  shadow-lg p-6 pt-0 mb-5">
         <h2 className="text-2xl font-bold mb-4">{placeName}</h2>
         <p className="mb-4">
           Nikmati relaksasi tertinggi di Resort Surga Tropis kami. Terletak di
@@ -70,6 +71,8 @@ export default function LightboxGallery({
             <li>Email: pemesanan@surgatropis.com</li>
           </ul>
         </div>
+
+        <Link href={'/'} className="relative left-1/2 -translate-x-1/2  top-4 text-center w-screen px-2 py-2 inline-block rounded-md text-slate-900 bg-white ">Pesan Tiket?</Link>
       </div>
     </motion.section>
   );

@@ -1,5 +1,4 @@
-"use client"
-import { motion } from "framer-motion";
+import * as motion from "framer-motion/client"
 import Link from "next/link";
 import React from "react";
 import logo from "/public/logo.png"
@@ -8,7 +7,7 @@ import Image from "next/image";
 function Navbar() {
   return (
     <motion.section
-      className="relative max-h-20 place-items-center gap-4 flex w-full items-center px-6 backdrop-blur-0 text-lg"
+      className="relative max-h-20 place-items-center gap-4 flex w-full items-center px-6 backdrop-blur-0 text-lg justify-between flex-row"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -18,7 +17,8 @@ function Navbar() {
           <Image src={logo} alt="logo" fill style={{ objectFit: "cover" }} />
         </div>
       </Link>
-      <ul className="mx-auto flex gap-6">
+
+      <ul className="mx-auto hidden sm:flex gap-6">
         {["Galery", "Ticket"].map((link) => (
           <li key={link}>
             <Link href={`/${link.toLowerCase()}`} passHref>

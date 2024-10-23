@@ -12,7 +12,7 @@ const AuthWrapper = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname()
   return (
     <SessionProvider>
-      <main className="font-[family-name:var(--font-geist-sans)] text-white p-2 flex flex-col h-full bg-slate-800">
+      <main className="font-[family-name:var(--font-geist-sans)] text-white p-2 flex flex-col max-h-screen bg-slate-800">
         { pathname == "/" && <Image src={bg} style={{ objectFit: "cover" }} alt="background" fill />}
 
         <Navbar />
