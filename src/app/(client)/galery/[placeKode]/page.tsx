@@ -84,7 +84,7 @@ export default function LightboxGallery({
 
         {/* Booking Link */}
         <Link
-          href="/"
+          href={`/galery/${placeKode}/pesan`}
           className="relative left-1/2 -translate-x-1/2 top-4 text-center w-full px-2 py-2 inline-block rounded-md text-slate-900 bg-white"
         >
           Pesan Tiket?
