@@ -3,11 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import AuthWrapper from "@/src/wrapper/AuthWrapper";
 
-// import styles
-import 'lightgallery/css/lightgallery.css';
-import 'lightgallery/css/lg-zoom.css';
-import 'lightgallery/css/lg-thumbnail.css';
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

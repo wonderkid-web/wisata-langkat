@@ -1,8 +1,7 @@
 import Image from "next/image";
-import card1 from "/public/card1.jpg";
-import card2 from "/public/card2.jpg";
 import Link from "next/link";
 import * as motion from "framer-motion/client";
+import { destination } from "../stataic";
 
 export default async function Home() {
   return (
@@ -33,11 +32,11 @@ export default async function Home() {
         animate={{ opacity: 1, x: 0 }}
       >
         <div className="flex items-center space-x-8 py-4">
-          {[1, 2, 3, 4, 5].map((index) => (
+          {destination.map((img, index) => (
             <div
               key={index}
               className={`${
-                index == 1 ? "h-[400px] w-[275px]" : "h-[325px] w-[225px]"
+                index == 0 ? "h-[400px] w-[275px]" : "h-[325px] w-[225px]"
               } flex-shrink-0  relative rounded-lg overflow-hidden`}
             >
               <div className="drop-shadow-lg bg-opacity-40 bg-slate-800 w-10/12 p-2 rounded-md z-10 absolute bottom-4 left-4 flex flex-col gap-2">
@@ -46,12 +45,12 @@ export default async function Home() {
                     index == 1 ? "text-xl" : "text-md"
                   }  text-slate-50 font-semibold text-right`}
                 >
-                  Pantai Cermin Langkat
+                  {img.placeName}
                 </p>
 
                 <Link
                   className="text-slate-800 px-2 py-[0.125rem] rounded-sm bg-white w-fit self-end hover:bg-opacity-90 transition-all"
-                  href={`/galery`}
+                  href={`/galery/${img.placeKode}`}
                 >
                   pesan tiket
                 </Link>
@@ -60,16 +59,16 @@ export default async function Home() {
               {index % 2 != 0 ? (
                 <Image
                   className="hover:scale-110 hover:cursor-pointer transition-all"
-                  src={card1}
-                  alt={`Langkat ${index}`}
+                  src={img.src}
+                  alt={img.alt}
                   fill
                   style={{ objectFit: "cover" }}
                 />
               ) : (
                 <Image
                   className="hover:scale-110 hover:cursor-pointer transition-all"
-                  src={card2}
-                  alt={`Langkat ${index}`}
+                  src={img.src}
+                  alt={img.alt}
                   fill
                   style={{ objectFit: "cover" }}
                 />

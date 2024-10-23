@@ -1,11 +1,18 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
+import * as motion from "framer-motion/client";
+import { PlaceKodeType } from "@/src/types";
+import { destination } from "@/src/stataic";
+import { notFound } from "next/navigation";
 
-import bg from "/public/bg.jpg";
+export default function LightboxGallery({
+  params: { placeKode },
+}: {
+  params: { placeKode: PlaceKodeType };
+}) {
+  const { alt, placeName, src } = destination.find((des) => des.placeKode == placeKode)!;
 
-export default function LightboxGallery() {
+  if (!placeName) return notFound();
+
   return (
     <motion.section
       transition={{ delay: 0.8, duration: 0.5 }}
@@ -14,16 +21,11 @@ export default function LightboxGallery() {
       className="mt-4 grid grid-cols-9 grid-rows-5 gap-4 relative min-h-[93vh] max-h-[93vh] overflow-hidden pt-12"
     >
       <div className="relative col-start-2 col-end-4 row-start-1 row-end-4 cursor-pointer rounded-md overflow-hidden text-slate-800!">
-        <Image
-          fill
-          alt="Pantai resort yang indah"
-          src={bg}
-          className="object-cover"
-        />
+        <Image fill alt={alt} src={src} className="object-cover" />
       </div>
 
       <div className="relative col-start-4 col-end-9 row-start-1 -row-end-1 rounded-md overflow-hidden  shadow-lg p-6 pt-0">
-        <h2 className="text-2xl font-bold mb-4">Resort Surga Tropis</h2>
+        <h2 className="text-2xl font-bold mb-4">{placeName}</h2>
         <p className="mb-4">
           Nikmati relaksasi tertinggi di Resort Surga Tropis kami. Terletak di
           tepi pantai Crystal Bay yang masih alami, destinasi mewah ini

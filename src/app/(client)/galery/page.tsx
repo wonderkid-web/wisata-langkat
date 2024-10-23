@@ -1,115 +1,81 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import Image, { StaticImageData } from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import Image from 'next/image'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { DestinationType } from '@/src/types'
+import { destination } from '@/src/stataic'
+import Link from 'next/link'
 
-import bg from "/public/bg.jpg";
-import card1 from "/public/card1.jpg";
-import card2 from "/public/card2.jpg";
-import Link from "next/link";
 
-type ImageType = {
-  src: StaticImageData;
-  alt: string;
-  place: "KAL" | "NSS" | "PC"
-};
-
-export default function LightboxGallery() {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState<ImageType | null>(null);
-
-  const images: ImageType[] = [
-    { src: bg, alt: "Background", place: "KAL" },
-    { src: card2, alt: "Card 2", place: "NSS" },
-    { src: card1, alt: "Card 1", place: "PC" },
-  ];
-
-  const openLightbox = (image: ImageType) => {
-    setCurrentImage(image);
-    setLightboxOpen(true);
-  };
-
-  const closeLightbox = () => {
-    setLightboxOpen(false);
-  };
+export default function MosaicGallery() {
+  const [selectedImage, setSelectedImage] = useState<DestinationType | null>(null)
 
   return (
-    <>
-      <motion.section
-        transition={{ delay: 0.8, duration: 0.5 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mt-4 grid grid-cols-9 grid-rows-4 gap-4 min-h-[93vh] relative"
-      >
-        <div
-          className="relative col-start-2 -col-end-2 row-start-1 row-end-3 cursor-pointer rounded-t-md overflow-hidden"
-          onClick={() => openLightbox(images[0])}
-        >
-          <Image
-            fill
-            alt={images[0].alt}
-            src={images[0].src}
-            className="object-cover"
-          />
-        </div>
-        <div
-          className="relative col-start-2 col-end-7 row-start-3 row-end-5 cursor-pointer rounded-bl-md overflow-hidden"
-          onClick={() => openLightbox(images[1])}
-        >
-          <Image
-            fill
-            alt={images[1].alt}
-            src={images[1].src}
-            className="object-cover"
-          />
-        </div>
-        <div
-          className="relative col-span-2 row-span-2 cursor-pointer rounded-br-md overflow-hidden"
-          onClick={() => openLightbox(images[2])}
-        >
-          <Image
-            fill
-            alt={images[2].alt}
-            src={images[2].src}
-            className="object-contain"
-          />
-        </div>
-      </motion.section>
+    <div className="max-h-[95vh] overflow-hidden container mx-auto px-4 py-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-[93vh] overflow-scroll">
+        {destination.map((item) => (
+          <motion.div
+            key={item.placeKode}
+            className="relative overflow-hidden aspect-square cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setSelectedImage(item)}
+          >
+            <Image
+              src={item.src}
+              alt={item.alt}
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-300 ease-in-out transform hover:scale-110"
+            />
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300"
+            >
+              <h3 className="text-white text-center text-lg font-semibold px-2">{item.placeName}</h3>
+            </motion.div>
+          </motion.div>
+        ))}
+      </div>
 
       <AnimatePresence>
-        {lightboxOpen && currentImage && (
+        {selectedImage && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            // onClick={closeLightbox}
-            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 bg-slate-800 bg-opacity-80 flex items-center justify-center z-50"
           >
             <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              className="relative max-w-4xl max-h-[90vh] w-full h-full"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-slate-900 placeholder-opacity-70 p-4 rounded-lg max-w-3xl w-full mx-4"
             >
-              <Image
-                src={currentImage.src}
-                alt={currentImage.alt}
-                layout="fill"
-                objectFit="contain"
-              />
-              <Link className="py-2 rounded-md bg-emerald-600 text-white font-bold text-center w-full absolute bottom-32" href={`/galery/${currentImage.place}`}>Detail Wisata?</Link>
-              <button
-                onClick={closeLightbox}
-                className="absolute top-4 right-4 text-white text-2xl"
-                aria-label="Close lightbox"
+              <div className="relative aspect-video mb-4">
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
+              </div>
+              {/* <h2 className="text-2xl font-bold mb-2">{selectedImage.placeName}</h2> */}
+              <Link 
+                href={`/galery/${selectedImage.placeKode}`}
+                className="bg-white text-slate-900 font-bold py-2 px-4 rounded ease-in-out w-full inline-block text-center"
               >
-                &times;
-              </button>
+                Lihat Detail Wisata
+              </Link>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
-  );
+    </div>
+  )
 }
