@@ -1,14 +1,12 @@
 import FormOrder from "./FormOrder";
 import { PlaceKodeType } from "@/src/types";
 import { destination } from "@/src/stataic";
-import Image from "next/image";
 
 export default function page({
   params: { placeKode },
 }: {
   params: { placeKode: PlaceKodeType };
 }) {
-  const { alt, src } = destination.find((des) => des.placeKode == placeKode)!;
 
   return (
     <section className="container mx-auto p-4 min-h-[95vh] max-h-[95vh] overflow-hidden mt-8 sm:mt-4">
