@@ -7,7 +7,7 @@ export default auth(({ nextUrl, auth }) => {
   url.pathname = "/api/auth/signin";
 
   if (!auth) {
-    return NextResponse.redirect('http://localhost:3000/api/auth/signin');
+    return NextResponse.redirect(`${process.env.AUTH_URL}/api/auth/signin`);
   }
 });
 
