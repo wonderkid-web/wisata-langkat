@@ -210,7 +210,7 @@ export default function FormOrder({
             <FormItem>
               <FormLabel>Nomor HP / WA</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input type="number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -224,7 +224,7 @@ export default function FormOrder({
             <FormItem>
               <FormLabel>Jumlah Orang</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input type="number" {...field} />
               </FormControl>
             </FormItem>
           )}
