@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import logo from "/public/logo.png"
 import Image from "next/image";
+import TransitionLink from "./TransitionLink";
 
 function Navbar() {
   return (
@@ -21,11 +22,11 @@ function Navbar() {
       <ul className="mx-auto hidden sm:flex gap-6">
         {["Galery", "Ticket"].map((link) => (
           <li key={link}>
-            <Link href={`/${link.toLowerCase()}`} passHref>
+            <TransitionLink href={`/${link.toLowerCase()}`} passHref>
               <span className="hover:cursor-pointer hover:text-xl transition-all">
                 {link}
               </span>
-            </Link>
+            </TransitionLink>
           </li>
         ))}
       </ul>

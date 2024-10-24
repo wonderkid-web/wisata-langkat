@@ -2,12 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg{
-  background-image: url('/public//bg.jpg');
+.bg {
+  background-image: url("/public//bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
+body {
+  transition-property: opacity, background-color, filter, transform;
+  transition-timing-function: ease-in-out;
+  transition-duration: 350ms;
+}
+
+.transition-property {
+  background-color: black;
+  opacity: 0;
+  transform: translateX(20px);
+  filter: blur(2px);
+}
+
 /* 
 .card {
   display: flex;

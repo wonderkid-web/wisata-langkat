@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="min-h-screen sm:max-h-screen relative">  
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden min-h-screen sm:max-h-screen `}
       >
         <AuthWrapper>{children}</AuthWrapper>
       </body>
