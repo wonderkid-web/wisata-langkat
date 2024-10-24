@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import AuthWrapper from "@/src/wrapper/AuthWrapper";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,11 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="min-h-screen sm:max-h-screen relative">  
+    <html lang="en" className="min-h-screen sm:max-h-screen relative">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden min-h-screen sm:max-h-screen `}
       >
         <AuthWrapper>{children}</AuthWrapper>
+        <Toaster />
       </body>
     </html>
   );

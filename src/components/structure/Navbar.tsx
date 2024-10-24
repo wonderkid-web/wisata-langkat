@@ -1,9 +1,10 @@
-import * as motion from "framer-motion/client"
+import * as motion from "framer-motion/client";
 import Link from "next/link";
 import React from "react";
-import logo from "/public/logo.png"
+import logo from "/public/logo.png";
 import Image from "next/image";
 import TransitionLink from "./TransitionLink";
+import { signOut } from "next-auth/react";
 
 function Navbar() {
   return (
@@ -29,7 +30,13 @@ function Navbar() {
             </TransitionLink>
           </li>
         ))}
+        <li onClick={async () => await signOut()}>
+          <span className="hover:cursor-pointer hover:text-xl transition-all">
+            Keluar
+          </span>
+        </li>
       </ul>
+
       <p className="font-semibold hover:cursor-default">Hallo, Bagas!</p>
     </motion.section>
   );

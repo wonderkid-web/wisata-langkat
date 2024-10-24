@@ -112,3 +112,10 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+@layer utilities {
+  .clip-path-zigzag {
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+}

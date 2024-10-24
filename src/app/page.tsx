@@ -12,16 +12,27 @@ export default async function Home() {
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
       >
-        <h1 className="text-white text-4xl sm:text-[8rem] leading-none">LANGKAT</h1>
+        <h1 className="text-white text-4xl sm:text-[8rem] leading-none">
+          LANGKAT
+        </h1>
         <p className="text-xl mt-4">
-          Pesona Tanah Langkat Sumatera Utara, Ciptakan Kenangan yang tak terlupakan.
+          Pesona Tanah Langkat Sumatera Utara, Ciptakan Kenangan yang tak
+          terlupakan.
         </p>
-        <Link
-          href="/galery"
-          className="flex items-center justify-center px-4 py-2 bg-slate-50 bg-opacity-20 rounded-md w-36 font-semibold hover:scale-105 mt-6 transition-transform"
-        >
-          explore
-        </Link>
+        <div className="flex gap-4">
+          <Link
+            href="/galery"
+            className="flex items-center justify-center px-4 py-2 bg-slate-50 bg-opacity-20 rounded-md w-36 font-semibold hover:scale-105 mt-6 transition-transform"
+          >
+            galery
+          </Link>
+          <Link
+            href="/ticket"
+            className="sm:hidden flex items-center justify-center px-4 py-2 bg-slate-50 bg-opacity-20 rounded-md w-36 font-semibold hover:scale-105 mt-6 transition-transform"
+          >
+            ticket
+          </Link>
+        </div>
       </motion.div>
 
       <motion.div

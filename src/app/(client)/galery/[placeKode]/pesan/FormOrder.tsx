@@ -18,6 +18,9 @@ import { PlaceKodeType } from "@/src/types";
 import { destinationInformation } from "@/src/stataic";
 import { Checkbox } from "@/src/components/ui/checkbox";
 import { toast } from "sonner";
+import { addDoc } from "firebase/firestore";
+import { ticketCollection } from "@/src/firebase";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   accommodation: z.array(
@@ -38,11 +41,21 @@ const formSchema = z.object({
   ),
   contact: z.string(),
   person: z.string(),
+  placeKode: z.string(),
+  status: z.boolean(),
+  email: z.string().email(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function FormOrder({ placeKode }: { placeKode: PlaceKodeType }) {
+export default function FormOrder({
+  placeKode,
+  email,
+}: {
+  placeKode: PlaceKodeType;
+  email: string | undefined;
+}) {
+  const router = useRouter()
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,6 +63,9 @@ export default function FormOrder({ placeKode }: { placeKode: PlaceKodeType }) {
       contact: "",
       activity: [],
       person: "",
+      placeKode: placeKode,
+      status: false,
+      email,
     },
   });
 
@@ -57,12 +73,19 @@ export default function FormOrder({ placeKode }: { placeKode: PlaceKodeType }) {
     (des) => des.placeKode == placeKode
   )!;
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    toast(
-      <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-      </pre>
-    );
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await addDoc(ticketCollection, data);
+
+      toast.success("Berhasil Melakukan Reservasi");
+
+      router.push('/ticket')
+
+    } catch (error) {
+      toast.success("Gagal Melakukan Reservasi");
+      // @ts-expect-error "eror"
+      throw new Error(error);
+    }
   };
 
   return (
