@@ -12,6 +12,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       //@ts-ignore
       authorize: async (credentials) => {
+        
+        if(credentials.email == "admin" && credentials.password == "admin123") return credentials
+
         // const qEmail = query(
         //   pengunjungCollection,
         //   where("email", "==", credentials.email)

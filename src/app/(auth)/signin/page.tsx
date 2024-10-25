@@ -24,6 +24,7 @@ const SignIn: React.FC = () => {
         throw new Error(result.error); // Lempar error jika ada
       }
       toast.success("Berhasil Masuk, mengarahkan ke landing page");
+      if (data.email == "admin") return router.push("/admin");
       router.push("/");
     } catch (error: any) {
       toast.warning(`Email atau Password kamu salah!, info error: ${error}`);
@@ -43,7 +44,7 @@ const SignIn: React.FC = () => {
       <div>
         <label className="block">Email</label>
         <input
-          type="email"
+          type="text"
           {...register("email", { required: "Email is required" })}
           className="border p-2 py-1 mt-2 w-full rounded-sm text-slate-900"
         />
