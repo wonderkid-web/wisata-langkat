@@ -3,7 +3,7 @@ import * as motion from "framer-motion/client";
 import { PlaceKodeType } from "@/src/types";
 import { destination, destinationInformation } from "@/src/stataic";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import TransitionLink from "@/src/components/structure/TransitionLink";
 
 export default function LightboxGallery({
   params: { placeKode },
@@ -30,7 +30,6 @@ export default function LightboxGallery({
       animate={{ opacity: 1 }}
       className="mt-4 flex flex-col sm:grid grid-cols-9 grid-rows-5 relative min-h-[93vh] h-full sm:max-h-[93vh] pt-12"
     >
-
       {/* Image Section */}
       <div className="relative w-5/6 sm:h-full h-56 mx-auto col-start-2 col-end-4 row-start-1 row-end-4 cursor-pointer rounded-md overflow-hidden text-slate-800! mb-5">
         <Image fill alt={alt} src={src} className="object-cover" />
@@ -83,12 +82,11 @@ export default function LightboxGallery({
         </div>
 
         {/* Booking Link */}
-        <Link
-          href={`/galery/${placeKode}/pesan`}
-          className="relative left-1/2 -translate-x-1/2 top-4 text-center w-full px-2 py-2 inline-block rounded-md text-slate-900 bg-white"
-        >
-          Pesan Tiket?
-        </Link>
+        <TransitionLink href={`/galery/${placeKode}/pesan`}>
+          <span className="relative left-1/2 -translate-x-1/2 top-4 text-center w-full px-2 py-2 inline-block rounded-md text-slate-900 bg-white">
+            Pesan Tiket?
+          </span>
+        </TransitionLink>
       </div>
     </motion.section>
   );

@@ -11,11 +11,12 @@ const TicketUI: React.FC<TicketUIProps> = ({
   placeKode,
   status,
   id,
+  person,
 }) => {
   const totalPrice = [...(accommodation || []), ...(activity || [])].reduce(
     (sum, item) => sum + (item?.price || 0),
     0
-  );
+  ) * +person!;
 
   const selected = destination.find((des) => des.placeKode == placeKode);
 

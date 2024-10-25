@@ -54,4 +54,20 @@ export interface TicketUIProps {
   placeKode: PlaceKodeType;
   status: boolean;
   id: string;
+  contact?: string;
+  email?: string;
+  person?: number | string;
 }
+
+
+export type SignInFormData = {
+  email: string;
+  password: string;
+};
+
+export type SignUpFormData = {
+  email: string;
+  password: string;
+  name: string;
+  phone: string | number;
+};

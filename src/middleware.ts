@@ -1,13 +1,9 @@
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
-export default auth(({ nextUrl, auth }) => {
-  // req.auth
-  const url = nextUrl.clone();
-  url.pathname = "/api/auth/signin";
-
+export default auth(({ auth }) => {
   if (!auth) {
-    return NextResponse.redirect(`${process.env.AUTH_URL}/api/auth/signin`);
+    return NextResponse.redirect(`${process.env.AUTH_URL}/signin`);
   }
 });
 
@@ -20,6 +16,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|signin|signup).*)',
   ],
 }

@@ -19,5 +19,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const ticketCollection = collection(db, 'ticket')
+const pengunjungCollection = collection(db, 'pengunjung')
 
-export { ticketCollection, db };
+export { ticketCollection, pengunjungCollection };

@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import * as motion from "framer-motion/client";
-import { destination } from "../stataic";
+import { destination } from "../../stataic";
+
 
 export default async function Home() {
+
   return (
     <section className="relative mt-12 sm:mt-72 flex flex-col sm:flex-row  items-center justify-between sm:pl-16 pr-4">
       <motion.div

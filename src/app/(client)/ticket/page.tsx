@@ -43,6 +43,7 @@ function Page() {
             placeKode={ticket.placeKode as PlaceKodeType}
             status={ticket.status}
             id={ticket.id}
+            person={ticket.person}
           />
         ))
       ) : (

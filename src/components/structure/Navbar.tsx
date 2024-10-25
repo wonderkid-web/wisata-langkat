@@ -4,13 +4,15 @@ import React from "react";
 import logo from "/public/logo.png";
 import Image from "next/image";
 import TransitionLink from "./TransitionLink";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 function Navbar() {
+  const session = useSession()
   return (
     <motion.section
       className="relative max-h-20 place-items-center gap-4 flex w-full items-center px-6 backdrop-blur-0 text-lg justify-between flex-row"
       initial={{ opacity: 0, y: -20 }}
+      // initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
@@ -37,7 +39,7 @@ function Navbar() {
         </li>
       </ul>
 
-      <p className="font-semibold hover:cursor-default">Hallo, Bagas!</p>
+      <p className="font-semibold hover:cursor-default">Hallo, {session?.data?.user?.name?.split(' ')[0]}!</p>
     </motion.section>
   );
 }
