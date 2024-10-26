@@ -23,11 +23,11 @@ function NavbarAdmin() {
     );
 
   return (
-    <nav ref={parent} className="flex justify-between sm:px-4 sm:py-2 flex-col sm:flex-row items-center gap-2 sm:gap-0 min-h-[25vh] max-h-[25vh] sm:min-h-[5vh]">
+    <nav ref={parent} className="flex justify-between sm:px-4 sm:py-2 flex-col sm:flex-row items-center gap-2 sm:gap-0 min-h-[25vh] max-h-[25vh] sm:min-h-[5vh] text-xl">
       <div className="w-32 h-12 relative sm:hidden mt-2 overflow-hidden rounded-sm">
         <Image alt="Logo" objectFit="cover" fill src={logo} />
       </div>
-      <ul className="bg-blue-500 w-full sm:w-1/3 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-4 transition-opacity">
+      <ul className="w-full sm:w-1/3 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-4 transition-opacity">
         <li>
           <Link className="inline-block" href={"/admin"}>
             Ticket

@@ -1,4 +1,3 @@
-import { firebaseDate } from "../types";
 import { format} from "date-fns"
 import {id} from "date-fns/locale"
 
@@ -10,5 +9,5 @@ export const showCurrency = (number: number) => {
 };
 
 
-export const showFormattedDate = (date: firebaseDate) => format(+date.seconds * 1000, "eeee, yyyy-MM-dd HH:mm", { locale: id });
+export const showFormattedDate = (date:number) => format(+date, "eeee, yyyy-MM-dd HH:mm", { locale: id });
 

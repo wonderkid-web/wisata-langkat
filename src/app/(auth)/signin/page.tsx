@@ -18,6 +18,7 @@ const SignIn: React.FC = () => {
   } = useForm<SignInFormData>();
 
   const onSubmit = async (data: SignInFormData) => {
+    toast.loading("Mengautentikasi...")
     try {
       const result = await signIn("credentials", { ...data, redirect: false });
       if (result?.error) {

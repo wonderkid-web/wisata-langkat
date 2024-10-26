@@ -50,11 +50,13 @@ export default function InvoiceUI() {
     }
   };
 
-    const totalAccommodation =
-      ticket?.accommodation?.reduce((sum, item) => sum + item.price, 0) || 0;
-    const totalActivity =
-      ticket?.activity?.reduce((sum, item) => sum + item.price, 0) || 0;
-    const grandTotal = (totalAccommodation + totalActivity) * (ticket?.person ? +ticket?.person : 1);
+  const totalAccommodation =
+    ticket?.accommodation?.reduce((sum, item) => sum + item.price, 0) || 0;
+  const totalActivity =
+    ticket?.activity?.reduce((sum, item) => sum + item.price, 0) || 0;
+  const grandTotal =
+    (totalAccommodation + totalActivity) *
+    (ticket?.person ? +ticket?.person : 1);
 
   return (
     <section className="min-h-[95vh] sm:max-h-[95vh] overflow-hidden p-4 sm:p-8">
@@ -92,7 +94,11 @@ export default function InvoiceUI() {
 
             <div className="flex justify-between text-sm">
               <span>Time:</span>
-              <span className="font-medium">{showFormattedDate((ticket?.date as firebaseDate))}</span>
+              <span className="font-medium">
+                {showFormattedDate(
+                  +(ticket?.date as firebaseDate)?.seconds * 1000
+                )}
+              </span>
             </div>
 
             {ticket?.accommodation && ticket?.accommodation.length > 0 && (
