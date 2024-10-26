@@ -39,11 +39,12 @@ const formSchema = z.object({
       })
       .optional()
   ),
-  contact: z.string(),
+  contact: z.string().optional(),
   person: z.string(),
   placeKode: z.string(),
   status: z.boolean(),
   email: z.string().email(),
+  date: z.date()
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -66,6 +67,7 @@ export default function FormOrder({
       placeKode: placeKode,
       status: false,
       email,
+      date: new Date()
     },
   });
 
@@ -198,20 +200,6 @@ export default function FormOrder({
                   }}
                 />
               ))}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="contact"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nomor HP / WA</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
               <FormMessage />
             </FormItem>
           )}

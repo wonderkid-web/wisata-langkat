@@ -4,6 +4,11 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 export type PlaceKodeType  = "KAL" | "NSS" | "PC" | "SB" | "JT" | "BL" | "ATS";
 export type PlaceNameType = "Kolam Abadi Langkat" | "Namu Sira Sira" | "Pantai Cermin" | "Sungai Bahorok" | "Jungle Tracking" | "Bukit Lawang" | "Air Terjun Siluman"
 
+export type firebaseDate = {
+  seconds: string | number
+  nanoseconds: string | number
+}
+
 export type AccommodationType = {
   type: string;
   price: number;
@@ -57,8 +62,8 @@ export interface TicketUIProps {
   contact?: string;
   email?: string;
   person?: number | string;
+  date?: firebaseDate | string | number;
 }
-
 
 export type SignInFormData = {
   email: string;
@@ -69,5 +74,5 @@ export type SignUpFormData = {
   email: string;
   password: string;
   name: string;
-  phone: string | number;
+  contact: string | number;
 };

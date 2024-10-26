@@ -9,9 +9,9 @@ export default async function Home() {
 const session = await auth()
   return (
     <section className="relative mt-12 sm:mt-72 flex flex-col sm:flex-row  items-center justify-between sm:pl-16 pr-4">
-      <pre>
-        {JSON.stringify(session, null, 2)}
-      </pre>
+      {
+        JSON.stringify(session, null, 2)
+      }
       <motion.div
         className="flex flex-col max-w-2xl"
         transition={{ delay: 0.8, duration: 0.8 }}

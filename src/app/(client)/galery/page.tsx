@@ -13,7 +13,7 @@ export default function MosaicGallery() {
 
   return (
     <div className="h-screen sm:max-h-[95vh] overflow-hidden container mx-auto px-4 py-8">
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 h-full sm:max-h-[93vh] overflow-scroll mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 w-full h-full mb-8">
         {destination.map((item) => (
           <motion.div
             key={item.placeKode}

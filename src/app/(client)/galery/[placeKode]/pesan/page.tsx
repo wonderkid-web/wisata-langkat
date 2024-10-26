@@ -12,7 +12,7 @@ export default async function page({
   const session = await auth()
 
   return (
-    <section className="container mx-auto p-4 min-h-[95vh] max-h-[95vh] overflow-hidden mt-8 sm:mt-4">
+    <section className="container mx-auto p-4 min-h-screen max-h-screen overflow-hidden sm:mt-4">
       <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center">
         {destination.find((des) => des.placeKode == placeKode)?.placeName}
       </h1>

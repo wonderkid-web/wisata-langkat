@@ -21,13 +21,13 @@ const SignUp: React.FC = () => {
 
   const onSubmit = async (data: SignUpFormData) => {
     const qEmail = query(pengunjungCollection, where("email", "==", data.email));
-    const qPhone = query(pengunjungCollection, where("phone", "==", data.phone));
+    const qPhone = query(pengunjungCollection, where("contact", "==", data.contact));
 
     const checkEmail = await getDocs(qEmail);
     const checkPhone = await getDocs(qPhone);
 
     if((!checkEmail.empty && !checkPhone.empty) || (!checkEmail.empty || !checkPhone.empty)){
-      toast.info(`Akun dengan email: ${data.email} atau nomor hp: ${data.phone} sudah terdaftar!`)
+      toast.info(`Akun dengan email: ${data.email} atau nomor hp: ${data.contact} sudah terdaftar!`)
       return
     }
 
@@ -69,11 +69,11 @@ const SignUp: React.FC = () => {
         <label className="block">Nomor HP</label>
         <input
           type="number"
-          {...register("phone", { required: "Nomor HP is required" })}
+          {...register("contact", { required: "Nomor HP is required" })}
           className="border p-2 py-1 mt-2 w-full rounded-sm text-slate-900"
         />
-        {errors.phone && (
-          <span className="text-red-500">{errors.phone.message}</span>
+        {errors.contact && (
+          <span className="text-red-500">{errors.contact.message}</span>
         )}
       </div>
 

@@ -12,9 +12,9 @@ import Image from "next/image";
 import { SetStateAction, useEffect, useState } from "react";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { ticketCollection } from "@/src/firebase";
-import { TicketUIProps } from "@/src/types";
+import { firebaseDate, TicketUIProps } from "@/src/types";
 import { useRouter, useSearchParams } from "next/navigation";
-import { showCurrency } from "@/src/helper";
+import { showCurrency, showFormattedDate } from "@/src/helper";
 import { toast } from "sonner";
 import { Skeleton } from "@/src/components/ui/skeleton";
 
@@ -50,11 +50,11 @@ export default function InvoiceUI() {
     }
   };
 
-  const totalAccommodation =
-    ticket?.accommodation?.reduce((sum, item) => sum + item.price, 0) || 0;
-  const totalActivity =
-    ticket?.activity?.reduce((sum, item) => sum + item.price, 0) || 0;
-  const grandTotal = (totalAccommodation + totalActivity) * +ticket!.person!  ;
+    const totalAccommodation =
+      ticket?.accommodation?.reduce((sum, item) => sum + item.price, 0) || 0;
+    const totalActivity =
+      ticket?.activity?.reduce((sum, item) => sum + item.price, 0) || 0;
+    const grandTotal = (totalAccommodation + totalActivity) * (ticket?.person ? +ticket?.person : 1);
 
   return (
     <section className="min-h-[95vh] sm:max-h-[95vh] overflow-hidden p-4 sm:p-8">
@@ -82,12 +82,17 @@ export default function InvoiceUI() {
             <div className="flex justify-between text-sm">
               <span>Status:</span>
               <span
-                className={`font-medium ${
-                  ticket?.status ? "text-green-600" : "text-red-600"
+                className={`font-medium text-white px-2 py-1 rounded-full ${
+                  ticket?.status ? "bg-green-600" : "bg-red-500"
                 }`}
               >
                 {ticket?.status ? "Lunas" : "Pending"}
               </span>
+            </div>
+
+            <div className="flex justify-between text-sm">
+              <span>Time:</span>
+              <span className="font-medium">{showFormattedDate((ticket?.date as firebaseDate))}</span>
             </div>
 
             {ticket?.accommodation && ticket?.accommodation.length > 0 && (
