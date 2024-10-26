@@ -29,13 +29,13 @@ function NavbarAdmin() {
       </div>
       <ul className="w-full sm:w-1/3 flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-4 transition-opacity">
         <li>
-          <Link className="inline-block" href={"/admin"}>
-            Ticket
+          <Link className="inline-block" href={"/admin/riwayat-reservasi"}>
+            Riwayat Reservasi
           </Link>
         </li>
         <li>
-          <Link className="inline-block" href={"/admin"}>
-            Ticket
+          <Link className="inline-block" href={"/admin/verifikasi-ticket"}>
+            Verifikasi Ticket
           </Link>
         </li>
       </ul>

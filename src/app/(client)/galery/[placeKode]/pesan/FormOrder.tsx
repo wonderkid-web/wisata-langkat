@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { addDoc } from "firebase/firestore";
 import { ticketCollection } from "@/src/firebase";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const formSchema = z.object({
   accommodation: z.array(
@@ -44,7 +45,7 @@ const formSchema = z.object({
   placeKode: z.string(),
   status: z.boolean(),
   email: z.string().email(),
-  date: z.date()
+  date: z.date(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -56,7 +57,8 @@ export default function FormOrder({
   placeKode: PlaceKodeType;
   email: string | undefined;
 }) {
-  const router = useRouter()
+  const session = useSession();
+  const router = useRouter();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,7 +69,7 @@ export default function FormOrder({
       placeKode: placeKode,
       status: false,
       email,
-      date: new Date()
+      date: new Date(),
     },
   });
 
@@ -76,13 +78,13 @@ export default function FormOrder({
   )!;
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    data.contact = session.data?.user?.contact as string;
     try {
       await addDoc(ticketCollection, data);
 
       toast.success("Berhasil Melakukan Reservasi");
 
-      router.push('/ticket')
-
+      router.push("/ticket");
     } catch (error) {
       toast.success("Gagal Melakukan Reservasi");
       // @ts-expect-error "eror"

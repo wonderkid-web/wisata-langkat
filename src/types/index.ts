@@ -58,7 +58,7 @@ export interface TicketUIProps {
   activity?: Activity[];
   placeKode: PlaceKodeType;
   status: boolean;
-  id: string;
+  id?: string;
   contact?: string;
   email?: string;
   person?: number | string;

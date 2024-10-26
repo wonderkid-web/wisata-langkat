@@ -1,4 +1,4 @@
-import { getDoc, getDocs, query, where } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { pengunjungCollection } from "./src/firebase";
@@ -12,8 +12,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       //@ts-ignore
       authorize: async (credentials) => {
-        
-        if(credentials.email == "admin" && credentials.password == "admin123") return credentials
+        if (credentials.email == "admin" && credentials.password == "admin123")
+          return credentials;
 
         // const qEmail = query(
         //   pengunjungCollection,
@@ -52,6 +52,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/signin",
   },
 
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+
+      return token;
+    },
+
+    session({ session, token }) {
+      // @ts-ignore
+      session.user = token.user;
+
+      return session;
+    },
+  },
 });
 
 // import NextAuth from "next-auth"

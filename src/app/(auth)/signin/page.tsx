@@ -18,12 +18,13 @@ const SignIn: React.FC = () => {
   } = useForm<SignInFormData>();
 
   const onSubmit = async (data: SignInFormData) => {
-    toast.loading("Mengautentikasi...")
+    const toastId = toast.loading("Mengautentikasi...")
     try {
       const result = await signIn("credentials", { ...data, redirect: false });
       if (result?.error) {
         throw new Error(result.error); // Lempar error jika ada
       }
+      toast.dismiss(toastId)
       toast.success("Berhasil Masuk, mengarahkan ke landing page");
       if (data.email == "admin") return router.push("/admin");
       router.push("/");
