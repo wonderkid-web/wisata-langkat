@@ -7,7 +7,7 @@ import TransitionLink from "./TransitionLink";
 import { signOut, useSession } from "next-auth/react";
 
 function Navbar() {
-  const session = useSession()
+  const session = useSession();
   return (
     <motion.section
       className="relative max-h-20 place-items-center gap-4 flex w-full items-center px-6 backdrop-blur-0 text-lg justify-between flex-row"
@@ -32,6 +32,13 @@ function Navbar() {
             </TransitionLink>
           </li>
         ))}
+        <li>
+          <TransitionLink href={`/bot`} passHref>
+            <span className="hover:cursor-pointer hover:text-xl transition-all">
+              Bot Wisata
+            </span>
+          </TransitionLink>
+        </li>
         <li onClick={async () => await signOut()}>
           <span className="hover:cursor-pointer hover:text-xl transition-all">
             Keluar
@@ -39,7 +46,9 @@ function Navbar() {
         </li>
       </ul>
 
-      <p className="font-semibold hover:cursor-default">Hallo, {session?.data?.user?.name?.split(' ')[0]}!</p>
+      <p className="font-semibold hover:cursor-default">
+        Hallo, {session?.data?.user?.name?.split(" ")[0]}!
+      </p>
     </motion.section>
   );
 }

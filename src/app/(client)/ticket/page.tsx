@@ -36,9 +36,6 @@ function Page() {
 
   return (
     <div className="relative min-h-[91.6vh] max-h-[91.vh] overflow-auto mt-8 flex flex-wrap gap-8 justify-start px-6 py-4">
-      <pre>
-        {JSON.stringify(tickets, null, 2)}
-      </pre>
       {tickets?.length ? (
         tickets?.map((ticket) => (
           <TicketUI

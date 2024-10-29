@@ -38,7 +38,7 @@ function VerifikationBar({ id, status }: Props) {
       <button
         disabled={status}
         onClick={() => handleVerification(true)}
-        className={`rounded-md text-white font-bold px-3 ${
+        className={`rounded-sm text-white font-bold px-3 py-1 ${
           !status ? "bg-green-500" : "bg-green-200"
         }`}
       >
@@ -48,7 +48,7 @@ function VerifikationBar({ id, status }: Props) {
       <button
         disabled={!status}
         onClick={() => handleVerification(false)}
-        className={`rounded-md text-white font-bold px-3 ${
+        className={`rounded-sm text-white font-bold px-3 py-1 ${
           status ? "bg-red-500" : "bg-red-200"
         }`}
         type="submit"

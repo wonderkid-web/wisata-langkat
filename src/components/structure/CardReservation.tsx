@@ -3,6 +3,7 @@ import { firebaseDate, TicketUIProps } from "@/src/types";
 import Image from "next/image";
 import Link from "next/link";
 import wa from "/public/wa.svg";
+import { destination } from "@/src/stataic";
 
 export const ReservationCard = (reservation: TicketUIProps) => {
   return (
@@ -58,10 +59,9 @@ export const ReservationCard = (reservation: TicketUIProps) => {
       >
         Status: {reservation.status ? "Done" : "Pending"}
       </p>
-
       <Link
         className="inline-block absolute bottom-7 right-4 h-6 w-6"
-        href={`https://wa.me/${reservation.contact}?text=Halo,%20kami%20dari%20Langkat%20Adventure%20ingin%20menanyakan%20reservasi%20${reservation.id}.`}
+        href={`https://wa.me/${reservation.contact?.replace(/08/g, '628')}?text=Halo,%20kami%20dari%20Langkat%20Adventure%20%0ADengan pesan ini kami ingin%20menanyakan%20reservasi%20dengan keterangan yang ada pesan adalah sebagai berikut. %0ATempat Destinasi: \t${destination.find(des=>des.placeKode == reservation.placeKode)?.placeName}%0ATanggal: \t ${showFormattedDate(+(reservation.date as firebaseDate).seconds * 1000)} %0Aemail pemesanan: \t ${reservation.email}.`}
       >
         <Image src={wa} objectFit="cover" alt="whatsapp" fill />
       </Link>

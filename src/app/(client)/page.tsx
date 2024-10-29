@@ -2,16 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import * as motion from "framer-motion/client";
 import { destination } from "../../stataic";
-import { auth } from "@/auth";
 
 
 export default async function Home() {
-const session = await auth()
   return (
     <section className="relative mt-12 sm:mt-72 flex flex-col sm:flex-row  items-center justify-between sm:pl-16 pr-4">
-      {
-        JSON.stringify(session, null, 2)
-      }
       <motion.div
         className="flex flex-col max-w-2xl"
         transition={{ delay: 0.8, duration: 0.8 }}
@@ -25,18 +20,24 @@ const session = await auth()
           Pesona Tanah Langkat Sumatera Utara, Ciptakan Kenangan yang tak
           terlupakan.
         </p>
-        <div className="flex gap-4">
+        <div className="flex max-h-screen overflow-auto gap-4">
           <Link
             href="/galery"
-            className="flex items-center justify-center px-4 py-2 bg-slate-50 bg-opacity-20 rounded-md w-36 font-semibold hover:scale-105 mt-6 transition-transform"
+            className="flex items-center justify-center px-4 py-2 bg-slate-50 bg-opacity-20 rounded-md w-24 sm:w-36 font-semibold hover:scale-105 mt-6 transition-transform"
           >
             galery
           </Link>
           <Link
             href="/ticket"
-            className="sm:hidden flex items-center justify-center px-4 py-2 bg-slate-50 bg-opacity-20 rounded-md w-36 font-semibold hover:scale-105 mt-6 transition-transform"
+            className="sm:hidden flex items-center justify-center px-4 py-2 bg-slate-50 bg-opacity-20 rounded-md w-24 sm:w-36 font-semibold hover:scale-105 mt-6 transition-transform"
           >
             ticket
+          </Link>
+          <Link
+            href="/bot"
+            className="sm:hidden flex items-center justify-center px-4 py-2 bg-slate-50 bg-opacity-20 rounded-md w-24 text-center sm:w-36 font-semibold hover:scale-105 mt-6 transition-transform"
+          >
+            Bot Wisata
           </Link>
         </div>
       </motion.div>
