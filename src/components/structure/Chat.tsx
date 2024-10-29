@@ -54,7 +54,7 @@ export default function Chat() {
   return (
     <div className="w-full max-w-2xl mx-auto">
       <div className="shadow-md rounded-md">
-        <div className="mb-4  h-screen overflow-y-auto">
+        <div className="mb-4 h-[75vh] overflow-y-auto">
           {messages.map((message, index) => (
             <div
               key={index}
